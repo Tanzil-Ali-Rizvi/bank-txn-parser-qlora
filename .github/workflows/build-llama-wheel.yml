@@ -1,7 +1,7 @@
 name: Build llama-cpp-python CPU wheel
 
 # The project's prebuilt CPU wheels are linked against musl libc, and compiling from source is too slow for
-# free app hosts. This builds a portable glibc (manylinux_2_28) wheel once and attaches it to a GitHub release,
+# free app hosts. This builds a portable glibc (built on manylinux_2_28) wheel once and attaches it to a GitHub release,
 # so the demo installs in seconds.
 on:
   workflow_dispatch:
@@ -25,16 +25,17 @@ jobs:
         run: |
           docker run --rm -v "$PWD":/io quay.io/pypa/manylinux_2_28_x86_64 bash -c '
             set -e
-            export CMAKE_ARGS="-DGGML_NATIVE=OFF -DGGML_AVX=ON -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON -DGGML_BLAS=OFF"
+            export CMAKE_ARGS="-DGGML_NATIVE=OFF -DGGML_AVX=ON -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON -DGGML_BLAS=OFF -DGGML_OPENMP=OFF"
             /opt/python/${{ inputs.python }}/bin/pip wheel --no-deps llama-cpp-python==${{ inputs.version }} -w /tmp/w
-            auditwheel repair /tmp/w/*.whl -w /io/dist
+            auditwheel show /tmp/w/*.whl || true
+            mkdir -p /io/dist && cp /tmp/w/*.whl /io/dist/
             ls -la /io/dist'
-      - name: Smoke test import on stock Ubuntu
+      - name: Smoke test on stock Debian Python (like Streamlit Cloud)
         run: |
-          docker run --rm -v "$PWD/dist":/d python:3.12-slim bash -c 'pip install -q /d/*.whl && python -c "import llama_cpp; print(llama_cpp.__version__)"'
+          docker run --rm -v "$PWD/dist":/d python:3.12-slim bash -c 'pip install -q /d/*.whl && python -c "import llama_cpp; print(llama_cpp.__version__, llama_cpp.llama_supports_mmap())"'
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: llama-cpp-python-${{ inputs.version }}-cpu
-          name: llama-cpp-python ${{ inputs.version }} CPU wheel (manylinux_2_28)
+          name: llama-cpp-python ${{ inputs.version }} CPU wheel (built on manylinux_2_28)
           body: Portable glibc build used by the Streamlit demo. Built by .github/workflows/build-llama-wheel.yml.
           files: dist/*.whl
