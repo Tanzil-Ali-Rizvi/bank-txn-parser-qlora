@@ -1,4 +1,5 @@
---extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+# llama-cpp-python is compiled from source on first deploy (a few minutes): the project's prebuilt CPU
+# wheels are linked against musl libc and do not load on Debian/Ubuntu hosts.
 llama-cpp-python==0.3.19
 streamlit>=1.40
 huggingface_hub>=0.26
