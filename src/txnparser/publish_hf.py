@@ -162,6 +162,8 @@ def main(argv: list[str] | None = None) -> None:
     )
     (a.data / "README.md").unlink()
 
+    if not (a.merged / "config.json").exists():
+        raise SystemExit(f"No merged model in {a.merged}: run txnparser.infer with --save-merged first.")
     api.create_repo(model_repo, private=a.private, exist_ok=True)
     (a.merged / "README.md").write_text(model_card(a.user, dataset_repo, rep, info))
     api.upload_folder(folder_path=str(a.merged), repo_id=model_repo, commit_message="Upload merged fine-tuned model")
