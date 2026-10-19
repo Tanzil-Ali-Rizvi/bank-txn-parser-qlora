@@ -1,0 +1,137 @@
+{
+  "seed": 42,
+  "sizes": {
+    "train": 5000,
+    "val": 300,
+    "test_id": 500,
+    "test_ood": 500
+  },
+  "held_out_merchants": {
+    "food_dining": [
+      "Chaayos",
+      "Swiggy",
+      "Zomato",
+      "McDonald's"
+    ],
+    "groceries": [
+      "Swiggy Instamart",
+      "DMart"
+    ],
+    "shopping": [
+      "IKEA",
+      "Croma",
+      "Westside",
+      "Myntra"
+    ],
+    "travel": [
+      "Ola",
+      "MakeMyTrip",
+      "Goibibo"
+    ],
+    "fuel": [
+      "Hindustan Petroleum",
+      "Jio-bp"
+    ],
+    "utilities": [
+      "Adani Electricity",
+      "MSEDCL"
+    ],
+    "telecom": [
+      "Hathway",
+      "Jio"
+    ],
+    "entertainment": [
+      "BookMyShow",
+      "Amazon Prime"
+    ],
+    "healthcare": [
+      "Netmeds",
+      "Apollo Pharmacy"
+    ],
+    "education": [
+      "Byju's",
+      "upGrad"
+    ],
+    "investment": [
+      "Nippon India Mutual Fund",
+      "Upstox"
+    ],
+    "insurance": [
+      "PolicyBazaar",
+      "Tata AIG"
+    ],
+    "emi_loan": [
+      "LIC Housing Finance",
+      "Navi Finserv"
+    ],
+    "tax": [
+      "BBMP Property Tax"
+    ],
+    "rent": [
+      "NoBroker"
+    ]
+  },
+  "held_out_templates": [
+    "l_4",
+    "n_atm_3",
+    "n_int_3",
+    "n_nach_3",
+    "n_rtgs_2",
+    "n_upi_5",
+    "s_atm_2",
+    "s_card_3",
+    "s_chg_2",
+    "s_nach_3",
+    "s_neft_cr_2",
+    "s_upi_cr_2",
+    "s_upi_dr_5"
+  ],
+  "kinds_train": {
+    "upi_merchant": 1147,
+    "card": 681,
+    "nach": 389,
+    "upi_p2p_dr": 384,
+    "atm": 261,
+    "upi_p2p_cr": 243,
+    "neft_salary": 238,
+    "charges": 209,
+    "upi_refund": 153,
+    "interest": 144,
+    "upi_rent": 142,
+    "imps_dr": 138,
+    "imps_cr": 119,
+    "neft_tax": 102,
+    "chq_paid": 95,
+    "neft_dr": 95,
+    "neft_cr": 93,
+    "card_refund": 93,
+    "chq_dep": 91,
+    "tds": 52,
+    "neft_rent": 50,
+    "rtgs_dr": 45,
+    "rtgs_cr": 36
+  },
+  "categories_train": {
+    "transfer": 1339,
+    "insurance": 301,
+    "rent": 269,
+    "cash_withdrawal": 261,
+    "refund": 246,
+    "salary": 238,
+    "bank_charges": 209,
+    "emi_loan": 207,
+    "investment": 186,
+    "fuel": 164,
+    "education": 163,
+    "tax": 154,
+    "utilities": 152,
+    "food_dining": 151,
+    "interest": 144,
+    "shopping": 140,
+    "healthcare": 138,
+    "groceries": 137,
+    "travel": 135,
+    "telecom": 133,
+    "entertainment": 133
+  }
+}

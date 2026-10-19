@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests scripts
+      - run: ruff format --check src tests scripts
+      - run: pytest -q
+
+  data-and-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Dataset regenerates byte-for-byte from the seed
+        run: |
+          python -m txnparser.generate --out /tmp/regen
+          for f in train val test_id test_ood; do cmp data/$f.jsonl /tmp/regen/$f.jsonl; done
+      - name: Score the committed predictions of every system
+        run: |
+          python -m txnparser.rules --out /tmp/preds
+          for s in test_id test_ood; do cmp results/preds/rules_$s.jsonl /tmp/preds/rules_$s.jsonl; done
+          python -m txnparser.report --out /tmp/report
+          cmp results/RESULTS.md /tmp/report/RESULTS.md
+
+  smoke-train:
+    # Tiny random model + local tokenizer: proves train.py and infer.py run end to end on CPU.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -e . transformers peft accelerate tokenizers
+      - run: python scripts/smoke_test.py
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bank-txn-parser"
+version = "0.1.0"
+description = "QLoRA fine-tuned small language model that turns Indian bank SMS alerts and statement lines into structured JSON."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Tanzil Ali Rizvi", email = "tanzilali.rizvi@gmail.com" }]
+dependencies = []
+
+[project.optional-dependencies]
+train = [
+  "torch>=2.3",
+  "transformers>=4.46",
+  "peft>=0.13",
+  "trl>=0.12",
+  "datasets>=3.0",
+  "accelerate>=1.0",
+  "bitsandbytes>=0.44",
+]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/txnparser"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
