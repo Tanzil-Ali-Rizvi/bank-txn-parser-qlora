@@ -2057,7 +2057,7 @@
           "upi_refund": 94.4,
           "upi_rent": 100.0
         },
-        "median_latency_ms": 139.5,
+        "median_latency_ms": 142.2,
         "error_sample": [
           {
             "id": "test_id-00063",
@@ -2366,7 +2366,7 @@
           "upi_refund": 100.0,
           "upi_rent": 75.0
         },
-        "median_latency_ms": 142.3,
+        "median_latency_ms": 144.8,
         "error_sample": [
           {
             "id": "test_ood-00007",

@@ -1,0 +1,22 @@
+{
+  "gguf": "bank-txn-parser-qwen2.5-1.5b-q8_0.gguf",
+  "size_mb": 1570,
+  "splits": {
+    "test_id": {
+      "n": 100,
+      "gguf_exact_match": 97.0,
+      "fp16_exact_match": 98.0,
+      "gguf_field_accuracy": 99.7,
+      "fp16_field_accuracy": 99.8,
+      "gguf_median_cpu_latency_ms": 10766
+    },
+    "test_ood": {
+      "n": 100,
+      "gguf_exact_match": 73.0,
+      "fp16_exact_match": 75.0,
+      "gguf_field_accuracy": 95.8,
+      "fp16_field_accuracy": 95.8,
+      "gguf_median_cpu_latency_ms": 10299
+    }
+  }
+}

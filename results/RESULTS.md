@@ -6,7 +6,7 @@ Exact match = every one of the 9 fields correct for a transaction.
 |---|---|---|---|---|---|---|
 | Regex + merchant dictionary | **80.0%** | 97.2% | **31.8%** | 88.0% | 100.0% | – |
 | Qwen2.5-1.5B-Instruct, 4-shot prompt | **17.0%** | 78.9% | **17.0%** | 78.0% | 100.0% | 687 ms |
-| Qwen2.5-1.5B + QLoRA (this repo) | **98.2%** | 99.8% | **72.2%** | 95.5% | 100.0% | 140 ms |
+| Qwen2.5-1.5B + QLoRA (this repo) | **98.2%** | 99.8% | **72.2%** | 95.5% | 100.0% | 142 ms |
 
 ## Field accuracy: Seen formats & merchants
 
