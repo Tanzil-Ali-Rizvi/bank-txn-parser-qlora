@@ -3,12 +3,15 @@
 [![CI](https://github.com/Tanzil-Ali-Rizvi/bank-txn-parser-qlora/actions/workflows/ci.yml/badge.svg)](https://github.com/Tanzil-Ali-Rizvi/bank-txn-parser-qlora/actions/workflows/ci.yml)
 [![Model on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Model-bank--txn--parser--qwen2.5--1.5b-yellow)](https://huggingface.co/TARizvi/bank-txn-parser-qwen2.5-1.5b)
 [![Dataset on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-indian--bank--txn--parsing-yellow)](https://huggingface.co/datasets/TARizvi/indian-bank-txn-parsing)
+[![Live demo](https://img.shields.io/badge/%E2%96%B6%20Live%20demo-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://tanzil-bank-txn-parser.streamlit.app)
 [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/Tanzil-Ali-Rizvi/bank-txn-parser-qlora/blob/main/notebooks/kaggle_train.ipynb)
 ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 
 **A 1.5B-parameter model fine-tuned with QLoRA on a free GPU that turns Indian bank SMS alerts and statement lines into clean JSON**: direction, amount, channel, counterparty, category, reference, own account, balance and date, across UPI, IMPS, NEFT, RTGS, card, ATM, NACH, cheque and bank entries.
 
 > Every personal-finance app, lender and accounting tool in India has to read these messages, and no two banks write them the same way. The usual answer is a growing pile of regexes plus a merchant lookup table, which works until a new merchant or a new message format arrives. This project measures how far a small fine-tuned model gets past that wall, with an honest held-out test.
+
+**▶ [Try the live demo](https://tanzil-bank-txn-parser.streamlit.app)**: pick a held-out transaction (e.g. a Swiggy UPI line the model never saw) and compare the fine-tuned model with the regex baseline field by field. It runs the 8-bit GGUF on a free 2-vCPU container, so each parse takes roughly 10–20 seconds.
 
 ## Results
 
@@ -41,6 +44,17 @@ The errors are concentrated, which makes them fixable:
 3. **Merchant or person?** A few unseen brands paid by UPI (e.g. *Chaayos*) are treated as transfers to a person, and some names lose their last letter (*Chaayo*).
 
 Next steps would be: train on more layout and wording variety (or synthetic paraphrases), constrain decoding to the allowed `channel` and `category` values, and add a small merchant-vs-person signal.
+
+### 8-bit GGUF for CPU
+
+The demo uses a Q8_0 GGUF export (1.6 GB) run with llama.cpp. On the same 100 + 100 test transactions it loses at most 2 exact matches against the fp16 model, with identical field accuracy on the unseen split ([`results/gguf_check.json`](results/gguf_check.json)):
+
+| Exact match | fp16 | Q8_0 GGUF |
+|---|---|---|
+| Seen formats & merchants (100) | 98% | 97% |
+| Unseen merchants or formats (100) | 75% | 73% |
+
+Run it locally with `ollama run hf.co/TARizvi/bank-txn-parser-qwen2.5-1.5b:Q8_0` or `llama-cli -hf TARizvi/bank-txn-parser-qwen2.5-1.5b:Q8_0`.
 
 ## Example
 
@@ -116,6 +130,7 @@ src/txnparser/
   publish_hf.py  model card, dataset card and Hub upload
   gguf_eval.py   checks the 8-bit GGUF against the fp16 model
 demo/            Streamlit app: fine-tuned model (GGUF, CPU) next to the regex baseline
+.github/         CI, results sync from the Hub, portable llama-cpp-python wheel build
 notebooks/       Kaggle notebook that runs the whole experiment
 results/         metrics, tables and every system's predictions
 ```
