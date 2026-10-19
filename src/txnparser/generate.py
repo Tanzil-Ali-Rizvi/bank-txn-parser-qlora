@@ -756,6 +756,8 @@ class Generator:
             "signed": f"-{amt}" if debit else r.choice([amt, f"+{amt}"]),
             "bal": bal,
         }
+        if layout.id == "l_4":  # unquoted CSV: thousands separators would make the columns ambiguous
+            lay.update({k: lay[k].replace(",", "") for k in ("dr", "cr", "bal")})
         text = layout.text.format(**lay)
         shown = self._shown(tpl.text) | {"date"} | ({"bal"} if "{bal}" in layout.text else set())
         if "cardmask" in shown or "last4" in shown:

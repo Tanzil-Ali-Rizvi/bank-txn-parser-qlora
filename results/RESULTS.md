@@ -4,7 +4,7 @@ Exact match = every one of the 9 fields correct for a transaction.
 
 | System | Seen formats & merchants: exact match | field accuracy | Unseen formats or merchants: exact match | field accuracy | Valid JSON | Median latency |
 |---|---|---|---|---|---|---|
-| Regex + merchant dictionary | **80.0%** | 97.2% | **28.0%** | 86.7% | 100.0% | – |
+| Regex + merchant dictionary | **80.0%** | 97.2% | **31.8%** | 88.0% | 100.0% | – |
 
 ## Field accuracy: Seen formats & merchants
 
@@ -25,11 +25,11 @@ Exact match = every one of the 9 fields correct for a transaction.
 | Field | Regex + merchant dictionary |
 |---|---|
 | direction | 95.4% |
-| amount | 96.0% |
+| amount | 100.0% |
 | channel | 96.2% |
 | counterparty | 53.4% |
 | category | 49.0% |
 | reference | 100.0% |
 | account_last4 | 98.2% |
-| balance | 91.8% |
+| balance | 100.0% |
 | date | 100.0% |

@@ -495,47 +495,47 @@
         "overall": {
           "n": 500,
           "valid_json": 100.0,
-          "exact_match": 28.0,
-          "field_accuracy": 86.7,
+          "exact_match": 31.8,
+          "field_accuracy": 88.0,
           "fields": {
             "direction": 95.4,
-            "amount": 96.0,
+            "amount": 100.0,
             "channel": 96.2,
             "counterparty": 53.4,
             "category": 49.0,
             "reference": 100.0,
             "account_last4": 98.2,
-            "balance": 91.8,
+            "balance": 100.0,
             "date": 100.0
           }
         },
         "by_source": {
           "sms": 33.9,
-          "statement": 22.1
+          "statement": 29.7
         },
         "by_kind": {
-          "atm": 76.5,
-          "card": 9.6,
+          "atm": 88.2,
+          "card": 12.0,
           "card_refund": 0.0,
           "charges": 36.4,
           "chq_dep": 0.0,
           "imps_cr": 0.0,
           "imps_dr": 50.0,
           "interest": 33.3,
-          "nach": 7.2,
+          "nach": 13.0,
           "neft_cr": 66.7,
           "neft_dr": 100.0,
-          "neft_rent": 50.0,
+          "neft_rent": 100.0,
           "neft_salary": 83.3,
-          "neft_tax": 37.5,
+          "neft_tax": 50.0,
           "rtgs_cr": 85.7,
-          "rtgs_dr": 50.0,
+          "rtgs_dr": 58.3,
           "tds": 100.0,
-          "upi_merchant": 11.3,
+          "upi_merchant": 13.2,
           "upi_p2p_cr": 58.3,
-          "upi_p2p_dr": 33.3,
+          "upi_p2p_dr": 40.7,
           "upi_refund": 73.7,
-          "upi_rent": 25.0
+          "upi_rent": 50.0
         },
         "median_latency_ms": null,
         "error_sample": [
@@ -688,36 +688,6 @@
             ]
           },
           {
-            "id": "test_ood-00006",
-            "text": "Txn Date,Description,Debit,Credit,Balance\n31/05/26,\"NEFT/N769354490552058/REKHA PATEL/HOUSE RENT\",33,392.65,,5,42,911.84",
-            "gold": {
-              "direction": "debit",
-              "amount": 33392.65,
-              "channel": "NEFT",
-              "counterparty": "Rekha Patel",
-              "category": "rent",
-              "reference": "N769354490552058",
-              "account_last4": null,
-              "balance": 542911.84,
-              "date": "2026-05-31"
-            },
-            "pred": {
-              "direction": "debit",
-              "amount": 33.0,
-              "channel": "NEFT",
-              "counterparty": "Rekha Patel",
-              "category": "rent",
-              "reference": "N769354490552058",
-              "account_last4": null,
-              "balance": 911.84,
-              "date": "2026-05-31"
-            },
-            "wrong": [
-              "amount",
-              "balance"
-            ]
-          },
-          {
             "id": "test_ood-00007",
             "text": "Konark Bank Alert: Auto-debit (e-mandate) of ₹4,993.00 to LIC HOUSING FINANCE LTD from A/c x9934 on 25.02.26 successful.",
             "gold": {
@@ -745,36 +715,6 @@
             "wrong": [
               "counterparty",
               "category"
-            ]
-          },
-          {
-            "id": "test_ood-00008",
-            "text": "Txn Date,Description,Debit,Credit,Balance\n26 Jun 2026,\"UPI/P2M/694202555777/STAR HEALTH PVT LTD/PAY TO MERCHANT/KONARK\",40,502.94,,1,07,534.93",
-            "gold": {
-              "direction": "debit",
-              "amount": 40502.94,
-              "channel": "UPI",
-              "counterparty": "Star Health",
-              "category": "insurance",
-              "reference": "694202555777",
-              "account_last4": null,
-              "balance": 107534.93,
-              "date": "2026-06-26"
-            },
-            "pred": {
-              "direction": "debit",
-              "amount": 40.0,
-              "channel": "UPI",
-              "counterparty": "Star Health",
-              "category": "insurance",
-              "reference": "694202555777",
-              "account_last4": null,
-              "balance": 534.93,
-              "date": "2026-06-26"
-            },
-            "wrong": [
-              "amount",
-              "balance"
             ]
           },
           {
@@ -979,6 +919,66 @@
               "account_last4": "5787",
               "balance": null,
               "date": "2025-04-22"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00019",
+            "text": "2026-03-25 | UPI/441531857128/UPI/tataaigindia@rzp/KAVERI BANK | Withdrawal: 904.36 | Deposit:  | Balance: 8949.83",
+            "gold": {
+              "direction": "debit",
+              "amount": 904.36,
+              "channel": "UPI",
+              "counterparty": "Tata AIG",
+              "category": "insurance",
+              "reference": "441531857128",
+              "account_last4": null,
+              "balance": 8949.83,
+              "date": "2026-03-25"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 904.36,
+              "channel": "UPI",
+              "counterparty": "Upi",
+              "category": "transfer",
+              "reference": "441531857128",
+              "account_last4": null,
+              "balance": 8949.83,
+              "date": "2026-03-25"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00020",
+            "text": "Rs.2,633.89 debited from A/c *2054 on 2025-05-12 to VPA dmart@axb (UPI Ref No 495793320388). Not you? Call 18001234567 to report -Vindhya Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 2633.89,
+              "channel": "UPI",
+              "counterparty": "DMart",
+              "category": "groceries",
+              "reference": "495793320388",
+              "account_last4": "2054",
+              "balance": null,
+              "date": "2025-05-12"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 2633.89,
+              "channel": "UPI",
+              "counterparty": null,
+              "category": "transfer",
+              "reference": "495793320388",
+              "account_last4": "2054",
+              "balance": null,
+              "date": "2025-05-12"
             },
             "wrong": [
               "counterparty",
