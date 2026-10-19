@@ -1,5 +1,5 @@
-# llama-cpp-python is compiled from source on first deploy (a few minutes): the project's prebuilt CPU
-# wheels are linked against musl libc and do not load on Debian/Ubuntu hosts.
-llama-cpp-python==0.3.19
+# Portable CPU build of llama-cpp-python made by .github/workflows/build-llama-wheel.yml: the project's own
+# prebuilt CPU wheels need musl libc, and compiling from source is too slow for free app hosts.
+llama-cpp-python @ https://github.com/Tanzil-Ali-Rizvi/bank-txn-parser-qlora/releases/download/llama-cpp-python-0.3.19-cpu/llama_cpp_python-0.3.19-cp312-cp312-linux_x86_64.whl
 streamlit>=1.40
 huggingface_hub>=0.26
