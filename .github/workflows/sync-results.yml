@@ -1,0 +1,40 @@
+name: Sync results from the Hugging Face Hub
+
+# Training and evaluation run on a free Kaggle GPU and publish their outputs to the Hub.
+# This pulls those outputs back into the repo so every number in the README is versioned here too.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install huggingface_hub
+      - name: Download results
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          from huggingface_hub import snapshot_download
+          src = Path(snapshot_download("TARizvi/bank-txn-parser-qwen2.5-1.5b",
+                                       allow_patterns=["results/*.json", "results/*.md", "results/preds/*.jsonl"]))
+          for f in (src / "results").rglob("*"):
+              if f.is_file():
+                  dest = Path("results") / f.relative_to(src / "results")
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy(f, dest)
+                  print("synced", dest)
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results
+          git diff --cached --quiet && echo "nothing to sync" || (git commit -m "Sync evaluation results from the Hugging Face Hub" && git push)
