@@ -3,7 +3,7 @@
 Runs the GGUF with llama.cpp on a fixed subset of each test split and scores it next to the fp16 fine-tuned
 model's predictions for the same examples.
 
-Usage:  python -m txnparser.gguf_eval --gguf model-q8_0.gguf --n 100
+Usage:  python -m txnparser.gguf_eval --gguf gguf/bank-txn-parser-qwen2.5-1.5b-q8_0.gguf --n 100
 """
 
 from __future__ import annotations
