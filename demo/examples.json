@@ -1,0 +1,182 @@
+[
+ {
+  "text": "03-08-2026 | UPI-SWIGGY-swiggy1@hdfcbank-VNDB0827656-648090778505-PAID VIA APP | Withdrawal: 309 | Deposit:  | Balance: 3,69,253.29",
+  "label": {
+   "direction": "debit",
+   "amount": 309.0,
+   "channel": "UPI",
+   "counterparty": "Swiggy",
+   "category": "food_dining",
+   "reference": "648090778505",
+   "account_last4": null,
+   "balance": 369253.29,
+   "date": "2026-08-03"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "29 Apr 2026  PCD/0536/ZOMATO ONLINE/BANGALORE/343378854342  89.02 Dr  7281",
+  "label": {
+   "direction": "debit",
+   "amount": 89.02,
+   "channel": "CARD",
+   "counterparty": "Zomato",
+   "category": "food_dining",
+   "reference": "343378854342",
+   "account_last4": "0536",
+   "balance": 7281.0,
+   "date": "2026-04-29"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "A/c XX6785 debited INR 223.50 on 17-Mar-2026. Info: UPI-MYNTRA PVT LTD-myntraindia@axisbank-UPI Intent. Avl Bal: INR329440.06 -Konark Bank",
+  "label": {
+   "direction": "debit",
+   "amount": 223.5,
+   "channel": "UPI",
+   "counterparty": "Myntra",
+   "category": "shopping",
+   "reference": null,
+   "account_last4": "6785",
+   "balance": 329440.06,
+   "date": "2026-03-17"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "Konark Bank: Purchase of INR10,888.05 on Card ending 8269 at MAKEMYTRIP, Mumbai on 26Dec25. Ref no 184059590130.",
+  "label": {
+   "direction": "debit",
+   "amount": 10888.05,
+   "channel": "CARD",
+   "counterparty": "MakeMyTrip",
+   "category": "travel",
+   "reference": "184059590130",
+   "account_last4": "8269",
+   "balance": null,
+   "date": "2025-12-26"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "05 May 2025 UPI/522002453269/payment/jiopay@yesbank/VINDHYA BANK -1195",
+  "label": {
+   "direction": "debit",
+   "amount": 1195.0,
+   "channel": "UPI",
+   "counterparty": "Jio",
+   "category": "telecom",
+   "reference": "522002453269",
+   "account_last4": null,
+   "balance": null,
+   "date": "2025-05-05"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "Thank you for using your Malabar Bank Debit Card ending 7519 for ₹399 at APOLLO PHARMACY on 10-12-2025 21:51. Avl Bal Rs.1,90,539.00",
+  "label": {
+   "direction": "debit",
+   "amount": 399.0,
+   "channel": "CARD",
+   "counterparty": "Apollo Pharmacy",
+   "category": "healthcare",
+   "reference": null,
+   "account_last4": "7519",
+   "balance": 190539.0,
+   "date": "2025-12-10"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "20-Aug-26 | TO TRANSFER-UPI/DR/567158976517/NOBROKER/DCNB/nobroker1@ybl/NA-- | Withdrawal: 53189 | Deposit:  | Balance: 3,25,069.35",
+  "label": {
+   "direction": "debit",
+   "amount": 53189.0,
+   "channel": "UPI",
+   "counterparty": "NoBroker",
+   "category": "rent",
+   "reference": "567158976517",
+   "account_last4": null,
+   "balance": 325069.35,
+   "date": "2026-08-20"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "2025-04-27, UPI/P2M/617343907514/UPSTOX/NA/SAHYADRI, -614.00, 447490.10",
+  "label": {
+   "direction": "debit",
+   "amount": 614.0,
+   "channel": "UPI",
+   "counterparty": "Upstox",
+   "category": "investment",
+   "reference": "617343907514",
+   "account_last4": null,
+   "balance": 447490.1,
+   "date": "2025-04-27"
+  },
+  "why": "unseen merchant"
+ },
+ {
+  "text": "Txn Date,Description,Debit,Credit,Balance\n31/05/26,\"NEFT/N769354490552058/REKHA PATEL/HOUSE RENT\",33392.65,,542911.84",
+  "label": {
+   "direction": "debit",
+   "amount": 33392.65,
+   "channel": "NEFT",
+   "counterparty": "Rekha Patel",
+   "category": "rent",
+   "reference": "N769354490552058",
+   "account_last4": null,
+   "balance": 542911.84,
+   "date": "2026-05-31"
+  },
+  "why": "unseen format"
+ },
+ {
+  "text": "Transaction alert: INR 503.44 was spent on your card ending 2879 at BLINKIT ONLINE on 09/07/2026 04:04. RRN 141872639763",
+  "label": {
+   "direction": "debit",
+   "amount": 503.44,
+   "channel": "CARD",
+   "counterparty": "Blinkit",
+   "category": "groceries",
+   "reference": "141872639763",
+   "account_last4": "2879",
+   "balance": null,
+   "date": "2026-07-09"
+  },
+  "why": "unseen format"
+ },
+ {
+  "text": "You have withdrawn INR3,300.00 from ATM using Debit Card XX0049 on 13-12-25 19:05. Txn No 690964798511. Avl Bal INR2,05,023.74",
+  "label": {
+   "direction": "debit",
+   "amount": 3300.0,
+   "channel": "ATM",
+   "counterparty": null,
+   "category": "cash_withdrawal",
+   "reference": "690964798511",
+   "account_last4": "0049",
+   "balance": 205023.74,
+   "date": "2025-12-13"
+  },
+  "why": "unseen format"
+ },
+ {
+  "text": "23/03/26, UPI/KUVERA/599030812038/ORDER, -783, 4,93,553.30",
+  "label": {
+   "direction": "debit",
+   "amount": 783.0,
+   "channel": "UPI",
+   "counterparty": "Kuvera",
+   "category": "investment",
+   "reference": "599030812038",
+   "account_last4": null,
+   "balance": 493553.3,
+   "date": "2026-03-23"
+  },
+  "why": "unseen format"
+ }
+]
