@@ -989,10 +989,1830 @@
       }
     },
     "base_fewshot": {
-      "label": "Qwen2.5-1.5B-Instruct, 4-shot prompt"
+      "label": "Qwen2.5-1.5B-Instruct, 4-shot prompt",
+      "test_id": {
+        "overall": {
+          "n": 500,
+          "valid_json": 100.0,
+          "exact_match": 17.0,
+          "field_accuracy": 78.9,
+          "fields": {
+            "direction": 83.8,
+            "amount": 92.4,
+            "channel": 78.2,
+            "counterparty": 71.2,
+            "category": 48.8,
+            "reference": 71.4,
+            "account_last4": 79.0,
+            "balance": 85.8,
+            "date": 99.8
+          }
+        },
+        "by_source": {
+          "sms": 27.2,
+          "statement": 6.5
+        },
+        "by_kind": {
+          "atm": 60.6,
+          "card": 0.0,
+          "card_refund": 11.1,
+          "charges": 0.0,
+          "chq_dep": 0.0,
+          "chq_paid": 0.0,
+          "imps_cr": 11.8,
+          "imps_dr": 14.3,
+          "interest": 13.3,
+          "nach": 26.7,
+          "neft_cr": 0.0,
+          "neft_dr": 30.0,
+          "neft_rent": 50.0,
+          "neft_salary": 58.3,
+          "neft_tax": 18.2,
+          "rtgs_cr": 0.0,
+          "rtgs_dr": 0.0,
+          "tds": 0.0,
+          "upi_merchant": 8.5,
+          "upi_p2p_cr": 4.2,
+          "upi_p2p_dr": 11.1,
+          "upi_refund": 50.0,
+          "upi_rent": 50.0
+        },
+        "median_latency_ms": 686.7,
+        "error_sample": [
+          {
+            "id": "test_id-00001",
+            "text": "12 Apr 2026 | IMPS/P2A/103307205189/IMRAN DAS/VINDHYA/dinner | Withdrawal: 15.00 | Deposit:  | Balance: 141623.36",
+            "gold": {
+              "direction": "debit",
+              "amount": 15.0,
+              "channel": "IMPS",
+              "counterparty": "Imran Das",
+              "category": "transfer",
+              "reference": "103307205189",
+              "account_last4": null,
+              "balance": 141623.36,
+              "date": "2026-04-12"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 15.0,
+              "channel": "IMPS",
+              "counterparty": "Vindhya",
+              "category": "food_dining",
+              "reference": "103307205189",
+              "account_last4": null,
+              "balance": 141623.36,
+              "date": "2026-04-12"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_id-00002",
+            "text": "19/12/25, CHQ BOOK CHGS, -231.57, 3,18,724.21",
+            "gold": {
+              "direction": "debit",
+              "amount": 231.57,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 318724.21,
+              "date": "2025-12-19"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": -231.57,
+              "channel": "CHEQUE",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 318724.21,
+              "date": "2025-12-19"
+            },
+            "wrong": [
+              "direction",
+              "amount",
+              "channel"
+            ]
+          },
+          {
+            "id": "test_id-00003",
+            "text": "02/01/2026 TO TRANSFER-UPI/DR/567429254438/NIKHIL DAS/DCNB/NIKHIL.DAS@IBL/PAYMENT FROM PH-- -83.47",
+            "gold": {
+              "direction": "debit",
+              "amount": 83.47,
+              "channel": "UPI",
+              "counterparty": "Nikhil Das",
+              "category": "transfer",
+              "reference": "567429254438",
+              "account_last4": null,
+              "balance": null,
+              "date": "2026-01-02"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 83.47,
+              "channel": "UPI",
+              "counterparty": "NIKHIL DAS",
+              "category": "transfer",
+              "reference": null,
+              "account_last4": "567429254438",
+              "balance": null,
+              "date": "2026-01-02"
+            },
+            "wrong": [
+              "reference",
+              "account_last4"
+            ]
+          },
+          {
+            "id": "test_id-00004",
+            "text": "2026-02-13  NEFT/N818586982818727/ANJALI ABHISHEK GUPTA/NA  558.05 CR  199643.00",
+            "gold": {
+              "direction": "credit",
+              "amount": 558.05,
+              "channel": "NEFT",
+              "counterparty": "Anjali Abhishek Gupta",
+              "category": "transfer",
+              "reference": "N818586982818727",
+              "account_last4": null,
+              "balance": 199643.0,
+              "date": "2026-02-13"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 199643.0,
+              "channel": "NEFT",
+              "counterparty": "Anjali Abhishek Gupta",
+              "category": "investment",
+              "reference": "N818586982818727/NA 558.05",
+              "account_last4": null,
+              "balance": null,
+              "date": "2026-02-13"
+            },
+            "wrong": [
+              "amount",
+              "category",
+              "reference",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_id-00005",
+            "text": "16-07-2026, UPI/P2M/687387735137/MAHANAGAR GAS/PAYMENT/GANGA, -1436.32, 594423.44",
+            "gold": {
+              "direction": "debit",
+              "amount": 1436.32,
+              "channel": "UPI",
+              "counterparty": "Mahanagar Gas",
+              "category": "utilities",
+              "reference": "687387735137",
+              "account_last4": null,
+              "balance": 594423.44,
+              "date": "2026-07-16"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 1436.32,
+              "channel": "UPI",
+              "counterparty": "Mahendra Gas",
+              "category": "utilities",
+              "reference": "594423.44",
+              "account_last4": "687387735137",
+              "balance": null,
+              "date": "2026-07-16"
+            },
+            "wrong": [
+              "counterparty",
+              "reference",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_id-00006",
+            "text": "19/04/26, TO TRANSFER-UPI/DR/640048853237/SURESH FERNA/SHYB/suresh.fernandes@apl/TRIP--, -20.09, 41,596.76",
+            "gold": {
+              "direction": "debit",
+              "amount": 20.09,
+              "channel": "UPI",
+              "counterparty": "Suresh Ferna",
+              "category": "transfer",
+              "reference": "640048853237",
+              "account_last4": null,
+              "balance": 41596.76,
+              "date": "2026-04-19"
+            },
+            "pred": {
+              "direction": "transfer",
+              "amount": -20.09,
+              "channel": "UPI",
+              "counterparty": "Suresh Fernandes",
+              "category": "investment",
+              "reference": null,
+              "account_last4": "4159676",
+              "balance": null,
+              "date": "2026-04-19"
+            },
+            "wrong": [
+              "direction",
+              "amount",
+              "counterparty",
+              "category",
+              "reference",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_id-00007",
+            "text": "11-06-2025  BY TRANSFER-UPI/CR/449582274120/SURESH DAS/GNGB/sureshd51@axl/SENT USING APP--  549.00 CR  3,73,323.20",
+            "gold": {
+              "direction": "credit",
+              "amount": 549.0,
+              "channel": "UPI",
+              "counterparty": "Suresh Das",
+              "category": "transfer",
+              "reference": "449582274120",
+              "account_last4": null,
+              "balance": 373323.2,
+              "date": "2025-06-11"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 549.0,
+              "channel": "UPI",
+              "counterparty": "SURESH DAS",
+              "category": "transfer",
+              "reference": "GNGB/sureshd51@axl/SENT USING APP",
+              "account_last4": "449582274120",
+              "balance": 373323.2,
+              "date": "2025-06-11"
+            },
+            "wrong": [
+              "reference",
+              "account_last4"
+            ]
+          },
+          {
+            "id": "test_id-00008",
+            "text": "Date: 17-Jul-26\nDescription: NEFT DR-DCNB0032122-INCOME TAX DEPARTMENT-NETBANK, MUM-SHYBN14250643113-ADVANCE TAX\nAmount: 2812.32 Dr\nClosing balance: 2,78,872.74",
+            "gold": {
+              "direction": "debit",
+              "amount": 2812.32,
+              "channel": "NEFT",
+              "counterparty": "Income Tax Department",
+              "category": "tax",
+              "reference": "SHYBN14250643113",
+              "account_last4": null,
+              "balance": 278872.74,
+              "date": "2026-07-17"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 2812.32,
+              "channel": "NEFT",
+              "counterparty": "Netbank",
+              "category": "tax",
+              "reference": "ADVANCE TAX",
+              "account_last4": null,
+              "balance": 278872.74,
+              "date": "2026-07-17"
+            },
+            "wrong": [
+              "direction",
+              "counterparty",
+              "reference"
+            ]
+          },
+          {
+            "id": "test_id-00009",
+            "text": "Your A/c ending 0061 has been debited with ₹6,153.48 on 2026-02-14 towards NACH mandate of HOME CREDIT. Avl Bal: Rs 475907.53 -Sahyadri Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 6153.48,
+              "channel": "NACH",
+              "counterparty": "Home Credit",
+              "category": "emi_loan",
+              "reference": null,
+              "account_last4": "0061",
+              "balance": 475907.53,
+              "date": "2026-02-14"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 6153.48,
+              "channel": "NACH",
+              "counterparty": "HOME CREDIT",
+              "category": "transfer",
+              "reference": null,
+              "account_last4": "0061",
+              "balance": 475907.53,
+              "date": "2026-02-14"
+            },
+            "wrong": [
+              "category"
+            ]
+          },
+          {
+            "id": "test_id-00010",
+            "text": "Rs.633.12 debited from A/c x5992 on 05-05-25 to VPA zee5pay@yesbank (UPI Ref No 679876428888). Not you? Call 18001234567 to report -Sahyadri Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 633.12,
+              "channel": "UPI",
+              "counterparty": "Zee5",
+              "category": "entertainment",
+              "reference": "679876428888",
+              "account_last4": "5992",
+              "balance": null,
+              "date": "2025-05-05"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 633.12,
+              "channel": "UPI",
+              "counterparty": "Sahyadri Bank",
+              "category": "transfer",
+              "reference": "679876428888",
+              "account_last4": "x5992",
+              "balance": null,
+              "date": "2025-05-05"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_id-00011",
+            "text": "Sahyadri Bank: INR 11.54 received in a/c ending 0606 from KAVYA MISHRA via UPI on 28APR25. Ref 442467301098. Remarks: trip. Avl Bal INR 537879.03",
+            "gold": {
+              "direction": "credit",
+              "amount": 11.54,
+              "channel": "UPI",
+              "counterparty": "Kavya Mishra",
+              "category": "transfer",
+              "reference": "442467301098",
+              "account_last4": "0606",
+              "balance": 537879.03,
+              "date": "2025-04-28"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 11.54,
+              "channel": "UPI",
+              "counterparty": "KAVYA MISHRA",
+              "category": "travel",
+              "reference": "442467301098",
+              "account_last4": null,
+              "balance": 537879.03,
+              "date": "2025-04-28"
+            },
+            "wrong": [
+              "category",
+              "account_last4"
+            ]
+          },
+          {
+            "id": "test_id-00013",
+            "text": "2025-10-08, UPI/683608544012/PAID VIA APP/disneyhotstar@icici/DECCAN BANK, -1,179.00, 345832.89",
+            "gold": {
+              "direction": "debit",
+              "amount": 1179.0,
+              "channel": "UPI",
+              "counterparty": "Disney+ Hotstar",
+              "category": "entertainment",
+              "reference": "683608544012",
+              "account_last4": null,
+              "balance": 345832.89,
+              "date": "2025-10-08"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 1179.0,
+              "channel": "UPI",
+              "counterparty": "DisneyHotstar",
+              "category": "entertainment",
+              "reference": "345832.89",
+              "account_last4": "179",
+              "balance": 345832.89,
+              "date": "2025-10-08"
+            },
+            "wrong": [
+              "reference",
+              "account_last4"
+            ]
+          },
+          {
+            "id": "test_id-00014",
+            "text": "05 Nov 2025  MMT/IMPS/643234195806/NA/ANITA RAMESH MENON/KAVERI  609.50 DR  5,78,941.53",
+            "gold": {
+              "direction": "debit",
+              "amount": 609.5,
+              "channel": "IMPS",
+              "counterparty": "Anita Ramesh Menon",
+              "category": "transfer",
+              "reference": "643234195806",
+              "account_last4": null,
+              "balance": 578941.53,
+              "date": "2025-11-05"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 578941.53,
+              "channel": "IMPS",
+              "counterparty": "Anita Ramesh Menon",
+              "category": "investment",
+              "reference": "609.50",
+              "account_last4": "643234195806",
+              "balance": null,
+              "date": "2025-11-05"
+            },
+            "wrong": [
+              "amount",
+              "category",
+              "reference",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_id-00015",
+            "text": "14/12/2025 NEFT DR-DCNB0736639-VENKATESH BANERJEE-NETBANK, MUM-MLBRN95084612153-FLAT RENT DEC -14240.00",
+            "gold": {
+              "direction": "debit",
+              "amount": 14240.0,
+              "channel": "NEFT",
+              "counterparty": "Venkatesh Banerjee",
+              "category": "rent",
+              "reference": "MLBRN95084612153",
+              "account_last4": null,
+              "balance": null,
+              "date": "2025-12-14"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 14240.0,
+              "channel": "NEFT",
+              "counterparty": "Venkatesh Banerjee",
+              "category": "rent",
+              "reference": null,
+              "account_last4": null,
+              "balance": null,
+              "date": "2025-12-14"
+            },
+            "wrong": [
+              "reference"
+            ]
+          },
+          {
+            "id": "test_id-00016",
+            "text": "RTGS of INR126.00 from A/c XXXXXXXX7503 to MONSOON LABS LLP processed on 10-Sep-2026. UTR NRMDR52026091011570511. -Narmada Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 126.0,
+              "channel": "RTGS",
+              "counterparty": "Monsoon Labs Llp",
+              "category": "transfer",
+              "reference": "NRMDR52026091011570511",
+              "account_last4": "7503",
+              "balance": null,
+              "date": "2026-09-10"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 126.0,
+              "channel": "RTGS",
+              "counterparty": "Monsoon Labs LLP",
+              "category": "investment",
+              "reference": "NRMDR52026091011570511",
+              "account_last4": "XXXXXXXX7503",
+              "balance": null,
+              "date": "2026-09-10"
+            },
+            "wrong": [
+              "direction",
+              "category"
+            ]
+          }
+        ]
+      },
+      "test_ood": {
+        "overall": {
+          "n": 500,
+          "valid_json": 100.0,
+          "exact_match": 17.0,
+          "field_accuracy": 78.0,
+          "fields": {
+            "direction": 83.4,
+            "amount": 95.8,
+            "channel": 73.6,
+            "counterparty": 70.6,
+            "category": 42.6,
+            "reference": 68.0,
+            "account_last4": 78.8,
+            "balance": 90.2,
+            "date": 99.0
+          }
+        },
+        "by_source": {
+          "sms": 26.3,
+          "statement": 7.6
+        },
+        "by_kind": {
+          "atm": 41.2,
+          "card": 2.4,
+          "card_refund": 11.1,
+          "charges": 0.0,
+          "chq_dep": 0.0,
+          "imps_cr": 0.0,
+          "imps_dr": 0.0,
+          "interest": 0.0,
+          "nach": 13.0,
+          "neft_cr": 16.7,
+          "neft_dr": 0.0,
+          "neft_rent": 50.0,
+          "neft_salary": 69.0,
+          "neft_tax": 50.0,
+          "rtgs_cr": 0.0,
+          "rtgs_dr": 0.0,
+          "tds": 0.0,
+          "upi_merchant": 9.9,
+          "upi_p2p_cr": 50.0,
+          "upi_p2p_dr": 0.0,
+          "upi_refund": 52.6,
+          "upi_rent": 0.0
+        },
+        "median_latency_ms": 681.8,
+        "error_sample": [
+          {
+            "id": "test_ood-00000",
+            "text": "₹1,251.00 paid to BOOKMYSHOW LIMITED (bookmyshowonline@rzp) from Malabar Bank a/c XXXXXXXX2256 on 15-02-26 20:26. UPI Ref: 676195372984. Note: UPI Intent",
+            "gold": {
+              "direction": "debit",
+              "amount": 1251.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow",
+              "category": "entertainment",
+              "reference": "676195372984",
+              "account_last4": "2256",
+              "balance": null,
+              "date": "2026-02-15"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 1251.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow Limited",
+              "category": "shopping",
+              "reference": "676195372984",
+              "account_last4": "XXXXXXXX2256",
+              "balance": null,
+              "date": "2026-02-15"
+            },
+            "wrong": [
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00001",
+            "text": "16-03-2026  TO TRANSFER-UPI/DR/479197826561/POLICYBAZAAR L/KAVB/policybazaaronline@axisbank/ORDER--  2,149.11 Dr  335533.85",
+            "gold": {
+              "direction": "debit",
+              "amount": 2149.11,
+              "channel": "UPI",
+              "counterparty": "PolicyBazaar",
+              "category": "insurance",
+              "reference": "479197826561",
+              "account_last4": null,
+              "balance": 335533.85,
+              "date": "2026-03-16"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 335533.85,
+              "channel": "UPI",
+              "counterparty": "POLICYBAZAAR L/KAVB",
+              "category": "transfer",
+              "reference": "ORDER",
+              "account_last4": "479197826561",
+              "balance": null,
+              "date": "2026-03-16"
+            },
+            "wrong": [
+              "amount",
+              "counterparty",
+              "category",
+              "reference",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_ood-00002",
+            "text": "Your A/c XXXXXX5888 has been debited with Rs 6979.77 on 09-03-2026 towards NACH mandate of NAVI FINSERV LTD. Avl Bal: Rs.28,045.78 -Narmada Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 6979.77,
+              "channel": "NACH",
+              "counterparty": "Navi Finserv",
+              "category": "emi_loan",
+              "reference": null,
+              "account_last4": "5888",
+              "balance": 28045.78,
+              "date": "2026-03-09"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 6979.77,
+              "channel": "NACH",
+              "counterparty": "NAVIFINSERV LTD.",
+              "category": "transfer",
+              "reference": null,
+              "account_last4": "5888",
+              "balance": 28045.78,
+              "date": "2026-03-09"
+            },
+            "wrong": [
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00004",
+            "text": "Thank you for using your Kaveri Bank Debit Card XX3741 for Rs.118.55 at GOIBIBO on 14.12.25 10:05. Avl Bal Rs 4,39,564.22",
+            "gold": {
+              "direction": "debit",
+              "amount": 118.55,
+              "channel": "CARD",
+              "counterparty": "Goibibo",
+              "category": "travel",
+              "reference": null,
+              "account_last4": "3741",
+              "balance": 439564.22,
+              "date": "2025-12-14"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 118.55,
+              "channel": "ATM",
+              "counterparty": "GOIBIBO",
+              "category": "shopping",
+              "reference": null,
+              "account_last4": "XX3741",
+              "balance": 439564.22,
+              "date": "2025-12-14"
+            },
+            "wrong": [
+              "direction",
+              "channel",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00006",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n31/05/26,\"NEFT/N769354490552058/REKHA PATEL/HOUSE RENT\",33392.65,,542911.84",
+            "gold": {
+              "direction": "debit",
+              "amount": 33392.65,
+              "channel": "NEFT",
+              "counterparty": "Rekha Patel",
+              "category": "rent",
+              "reference": "N769354490552058",
+              "account_last4": null,
+              "balance": 542911.84,
+              "date": "2026-05-31"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 33392.65,
+              "channel": "NEFT",
+              "counterparty": "REKHA PATEL",
+              "category": "rent",
+              "reference": "N769354490552058",
+              "account_last4": null,
+              "balance": 542911.84,
+              "date": "2026-05-31"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00007",
+            "text": "Konark Bank Alert: Auto-debit (e-mandate) of ₹4,993.00 to LIC HOUSING FINANCE LTD from A/c x9934 on 25.02.26 successful.",
+            "gold": {
+              "direction": "debit",
+              "amount": 4993.0,
+              "channel": "NACH",
+              "counterparty": "LIC Housing Finance",
+              "category": "emi_loan",
+              "reference": null,
+              "account_last4": "9934",
+              "balance": null,
+              "date": "2026-02-25"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 4993.0,
+              "channel": "EMI",
+              "counterparty": "LIC Housing Finance Ltd",
+              "category": "investment",
+              "reference": null,
+              "account_last4": "x9934",
+              "balance": null,
+              "date": "2026-02-25"
+            },
+            "wrong": [
+              "channel",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00008",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n26 Jun 2026,\"UPI/P2M/694202555777/STAR HEALTH PVT LTD/PAY TO MERCHANT/KONARK\",40502.94,,107534.93",
+            "gold": {
+              "direction": "debit",
+              "amount": 40502.94,
+              "channel": "UPI",
+              "counterparty": "Star Health",
+              "category": "insurance",
+              "reference": "694202555777",
+              "account_last4": null,
+              "balance": 107534.93,
+              "date": "2026-06-26"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 40502.94,
+              "channel": "UPI",
+              "counterparty": "Star Health Pvt Ltd",
+              "category": "healthcare",
+              "reference": "694202555777",
+              "account_last4": null,
+              "balance": 107534.93,
+              "date": "2026-06-26"
+            },
+            "wrong": [
+              "direction",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00009",
+            "text": "₹180.51 paid to MSEDCL LTD (msedclonline@rzp) from Kaveri Bank a/c x5537 on 22 Feb 2026 04:14:22. UPI Ref: 619324302650. Note: NA",
+            "gold": {
+              "direction": "debit",
+              "amount": 180.51,
+              "channel": "UPI",
+              "counterparty": "MSEDCL",
+              "category": "utilities",
+              "reference": "619324302650",
+              "account_last4": "5537",
+              "balance": null,
+              "date": "2026-02-22"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 180.51,
+              "channel": "UPI",
+              "counterparty": "MSEDCL Ltd",
+              "category": "transfer",
+              "reference": "619324302650",
+              "account_last4": "x5537",
+              "balance": null,
+              "date": "2026-02-22"
+            },
+            "wrong": [
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00010",
+            "text": "Dear Customer, Acct *5630 is credited with Rs 3,485.00 on 23-Apr-2026 from BYJUS. UPI Ref:559417539755 Note:REVERSAL -Konark Bank",
+            "gold": {
+              "direction": "credit",
+              "amount": 3485.0,
+              "channel": "UPI",
+              "counterparty": "Byju's",
+              "category": "refund",
+              "reference": "559417539755",
+              "account_last4": "5630",
+              "balance": null,
+              "date": "2026-04-23"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 3485.0,
+              "channel": "UPI",
+              "counterparty": "BYJUS",
+              "category": "transfer",
+              "reference": "559417539755",
+              "account_last4": "5630",
+              "balance": null,
+              "date": "2026-04-23"
+            },
+            "wrong": [
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00011",
+            "text": "A/c x8319 debited ₹ 859.68 on 03-08-25. Info: UPI-UPGRAD-upgradpay@paytm-payment. Avl Bal: INR 466251.92 -Malabar Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 859.68,
+              "channel": "UPI",
+              "counterparty": "upGrad",
+              "category": "education",
+              "reference": null,
+              "account_last4": "8319",
+              "balance": 466251.92,
+              "date": "2025-08-03"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 859.68,
+              "channel": "UPI",
+              "counterparty": "upgradpay@paytm-payment",
+              "category": "transfer",
+              "reference": null,
+              "account_last4": "x8319",
+              "balance": 466251.92,
+              "date": "2025-08-03"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00012",
+            "text": "Transaction alert: ₹ 2564 was spent on your card ending 1950 at MSEDCL JAIPUR on 15MAY25 02:32:46. RRN 840218842632",
+            "gold": {
+              "direction": "debit",
+              "amount": 2564.0,
+              "channel": "CARD",
+              "counterparty": "MSEDCL",
+              "category": "utilities",
+              "reference": "840218842632",
+              "account_last4": "1950",
+              "balance": null,
+              "date": "2025-05-15"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 2564.0,
+              "channel": "card",
+              "counterparty": "MSDCL Jaipur",
+              "category": "shopping",
+              "reference": "840218842632",
+              "account_last4": "1950",
+              "balance": null,
+              "date": "2025-05-15"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00013",
+            "text": "29 Apr 2026  PCD/0536/ZOMATO ONLINE/BANGALORE/343378854342  89.02 Dr  7281",
+            "gold": {
+              "direction": "debit",
+              "amount": 89.02,
+              "channel": "CARD",
+              "counterparty": "Zomato",
+              "category": "food_dining",
+              "reference": "343378854342",
+              "account_last4": "0536",
+              "balance": 7281.0,
+              "date": "2026-04-29"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 89.02,
+              "channel": "PCD",
+              "counterparty": "Zomato Online",
+              "category": "food_dining",
+              "reference": "7281",
+              "account_last4": "343378854342",
+              "balance": null,
+              "date": "2026-04-29"
+            },
+            "wrong": [
+              "channel",
+              "counterparty",
+              "reference",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_ood-00014",
+            "text": "Rs.17,468 debited from A/c ending 7997 on 2025-11-02 to VPA olapay@paytm (UPI Ref No 565842249165). Not you? Call 18001234567 to report -Vindhya Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 17468.0,
+              "channel": "UPI",
+              "counterparty": "Ola",
+              "category": "travel",
+              "reference": "565842249165",
+              "account_last4": "7997",
+              "balance": null,
+              "date": "2025-11-02"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 17468.0,
+              "channel": "UPI",
+              "counterparty": "Vindhya Bank",
+              "category": "transfer",
+              "reference": "565842249165",
+              "account_last4": "7997",
+              "balance": null,
+              "date": "2025-11-02"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00015",
+            "text": "18-Sep-25  UPI/P2M/610585207143/NETMEDS PVT LTD/ORDER/DECCAN  153.11 Dr  38,260.82",
+            "gold": {
+              "direction": "debit",
+              "amount": 153.11,
+              "channel": "UPI",
+              "counterparty": "Netmeds",
+              "category": "healthcare",
+              "reference": "610585207143",
+              "account_last4": null,
+              "balance": 38260.82,
+              "date": "2025-09-18"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 38260.82,
+              "channel": "UPI",
+              "counterparty": "Netmeds Pvt Ltd",
+              "category": "shopping",
+              "reference": "610585207143",
+              "account_last4": "3826",
+              "balance": null,
+              "date": "2025-09-18"
+            },
+            "wrong": [
+              "amount",
+              "category",
+              "account_last4",
+              "balance"
+            ]
+          },
+          {
+            "id": "test_ood-00017",
+            "text": "Dear Customer, Acct XX1133 is credited with Rs.56,775.00 on 01.01.26 from REKHA SINGH. UPI Ref:656537887036 Note:UPI -Konark Bank",
+            "gold": {
+              "direction": "credit",
+              "amount": 56775.0,
+              "channel": "UPI",
+              "counterparty": "Rekha Singh",
+              "category": "transfer",
+              "reference": "656537887036",
+              "account_last4": "1133",
+              "balance": null,
+              "date": "2026-01-01"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 56775.0,
+              "channel": "UPI",
+              "counterparty": "REKHA SINGH",
+              "category": "salary",
+              "reference": "656537887036",
+              "account_last4": "XX1133",
+              "balance": null,
+              "date": "2026-01-01"
+            },
+            "wrong": [
+              "category"
+            ]
+          }
+        ]
+      }
     },
     "ft": {
-      "label": "Qwen2.5-1.5B + QLoRA (this repo)"
+      "label": "Qwen2.5-1.5B + QLoRA (this repo)",
+      "test_id": {
+        "overall": {
+          "n": 500,
+          "valid_json": 100.0,
+          "exact_match": 98.2,
+          "field_accuracy": 99.8,
+          "fields": {
+            "direction": 100.0,
+            "amount": 100.0,
+            "channel": 99.8,
+            "counterparty": 99.0,
+            "category": 99.8,
+            "reference": 100.0,
+            "account_last4": 100.0,
+            "balance": 100.0,
+            "date": 99.4
+          }
+        },
+        "by_source": {
+          "sms": 98.0,
+          "statement": 98.4
+        },
+        "by_kind": {
+          "atm": 100.0,
+          "card": 98.6,
+          "card_refund": 100.0,
+          "charges": 95.0,
+          "chq_dep": 100.0,
+          "chq_paid": 100.0,
+          "imps_cr": 100.0,
+          "imps_dr": 100.0,
+          "interest": 100.0,
+          "nach": 100.0,
+          "neft_cr": 88.9,
+          "neft_dr": 90.0,
+          "neft_rent": 100.0,
+          "neft_salary": 91.7,
+          "neft_tax": 100.0,
+          "rtgs_cr": 100.0,
+          "rtgs_dr": 100.0,
+          "tds": 100.0,
+          "upi_merchant": 99.1,
+          "upi_p2p_cr": 100.0,
+          "upi_p2p_dr": 97.2,
+          "upi_refund": 94.4,
+          "upi_rent": 100.0
+        },
+        "median_latency_ms": 139.5,
+        "error_sample": [
+          {
+            "id": "test_id-00063",
+            "text": "INR 70,002.00 credited to your A/c x6293 on 24Mar26 through NEFT with UTR N522811478561149 by TRIDENT RETAIL LLP, Info: Salary credit mar. Avl Bal ₹ 4,23,523.10 -Kaveri Bank",
+            "gold": {
+              "direction": "credit",
+              "amount": 70002.0,
+              "channel": "NEFT",
+              "counterparty": "Trident Retail Llp",
+              "category": "salary",
+              "reference": "N522811478561149",
+              "account_last4": "6293",
+              "balance": 423523.1,
+              "date": "2026-03-24"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 70002.0,
+              "channel": "NEFT",
+              "counterparty": "Trident Retail Llp",
+              "category": "salary",
+              "reference": "N522811478561149",
+              "account_last4": "6293",
+              "balance": 423523.1
+            },
+            "wrong": [
+              "date"
+            ]
+          },
+          {
+            "id": "test_id-00161",
+            "text": "Dear Customer, ₹ 46.24 has been debited from your account XX7550 on 21Dec25 towards UPI/632472879451/ABHISHEK SANA SHARMA/Payment from Ph. Avl Bal INR3,33,458.65. -Malabar Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 46.24,
+              "channel": "UPI",
+              "counterparty": "Abhishek Sana Sharma",
+              "category": "transfer",
+              "reference": "632472879451",
+              "account_last4": "7550",
+              "balance": 333458.65,
+              "date": "2025-12-21"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 46.24,
+              "channel": "UPI",
+              "counterparty": "Abhishek Sanu Sharma",
+              "category": "transfer",
+              "reference": "632472879451",
+              "account_last4": "7550",
+              "balance": 333458.65,
+              "date": "2025-12-21"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          },
+          {
+            "id": "test_id-00192",
+            "text": "02/01/26, ATM AMC CHGS, -8.86, 516471.21",
+            "gold": {
+              "direction": "debit",
+              "amount": 8.86,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 516471.21,
+              "date": "2026-01-02"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 8.86,
+              "channel": "ATM",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 516471.21,
+              "date": "2026-01-02"
+            },
+            "wrong": [
+              "channel"
+            ]
+          },
+          {
+            "id": "test_id-00299",
+            "text": "Rs.19622.90 debited from A/c *0686 on 30 Apr 2026 to VPA drlalpathlabsonline@icici (UPI Ref No 696049239926). Not you? Call 18001234567 to report -Ganga Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 19622.9,
+              "channel": "UPI",
+              "counterparty": "Dr Lal PathLabs",
+              "category": "healthcare",
+              "reference": "696049239926",
+              "account_last4": "0686",
+              "balance": null,
+              "date": "2026-04-30"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 19622.9,
+              "channel": "UPI",
+              "counterparty": null,
+              "category": "transfer",
+              "reference": "696049239926",
+              "account_last4": "0686",
+              "balance": null,
+              "date": "2026-04-30"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_id-00360",
+            "text": "07/06/25  BY TRANSFER-UPI/CR/613555110557/DELHI METR/GNGB/DELHIMETRORAIL1@KOTAK/ORDER REFUND--  12,013.13 Cr  1,62,600.96",
+            "gold": {
+              "direction": "credit",
+              "amount": 12013.13,
+              "channel": "UPI",
+              "counterparty": "Delhi Metro Rail",
+              "category": "refund",
+              "reference": "613555110557",
+              "account_last4": null,
+              "balance": 162600.96,
+              "date": "2025-06-07"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 12013.13,
+              "channel": "UPI",
+              "counterparty": "Delhi Metro",
+              "category": "refund",
+              "reference": "613555110557",
+              "account_last4": null,
+              "balance": 162600.96,
+              "date": "2025-06-07"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          },
+          {
+            "id": "test_id-00446",
+            "text": "18 Aug 2025, PCD/1643/NAYARA ENERGY/BANGALORE/036674122697, -136.00, 5,285.50",
+            "gold": {
+              "direction": "debit",
+              "amount": 136.0,
+              "channel": "CARD",
+              "counterparty": "Nayara Energy",
+              "category": "fuel",
+              "reference": "036674122697",
+              "account_last4": "1643",
+              "balance": 5285.5,
+              "date": "2025-08-18"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 136.0,
+              "channel": "CARD",
+              "counterparty": "Nayara Energy",
+              "category": "fuel",
+              "reference": "036674122697",
+              "account_last4": "1643",
+              "balance": 5285.5
+            },
+            "wrong": [
+              "date"
+            ]
+          },
+          {
+            "id": "test_id-00448",
+            "text": "INR179034.00 credited to your A/c *7255 on 19JUN26 through NEFT with UTR N729567235567703 by COBALT SOFTWARE LLP, Info: Salary credit jun. Avl Bal INR 400792.70 -Kaveri Bank",
+            "gold": {
+              "direction": "credit",
+              "amount": 179034.0,
+              "channel": "NEFT",
+              "counterparty": "Cobalt Software Llp",
+              "category": "salary",
+              "reference": "N729567235567703",
+              "account_last4": "7255",
+              "balance": 400792.7,
+              "date": "2026-06-19"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 179034.0,
+              "channel": "NEFT",
+              "counterparty": "Cobalt Software Llp",
+              "category": "salary",
+              "reference": "N729567235567703",
+              "account_last4": "7255",
+              "balance": 400792.7
+            },
+            "wrong": [
+              "date"
+            ]
+          },
+          {
+            "id": "test_id-00455",
+            "text": "₹ 2,959.36 credited to your A/c ending 4939 on 23/02/2026 through NEFT with UTR SHYBN58392259321 by Neha Sheikh, Info: NA. Avl Bal ₹ 543237.13 -Narmada Bank",
+            "gold": {
+              "direction": "credit",
+              "amount": 2959.36,
+              "channel": "NEFT",
+              "counterparty": "Neha Sheikh",
+              "category": "transfer",
+              "reference": "SHYBN58392259321",
+              "account_last4": "4939",
+              "balance": 543237.13,
+              "date": "2026-02-23"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 2959.36,
+              "channel": "NEFT",
+              "counterparty": "Shyam Banerjee",
+              "category": "transfer",
+              "reference": "SHYBN58392259321",
+              "account_last4": "4939",
+              "balance": 543237.13,
+              "date": "2026-02-23"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          },
+          {
+            "id": "test_id-00488",
+            "text": "30/09/26  NEFT DR-NRMD0502282-MANOJ KARTHIK PANDEY-NETBANK, MUM-GNGBN96564024823-NA  60,647.86 Dr  4,65,803.30",
+            "gold": {
+              "direction": "debit",
+              "amount": 60647.86,
+              "channel": "NEFT",
+              "counterparty": "Manoj Karthik Pandey",
+              "category": "transfer",
+              "reference": "GNGBN96564024823",
+              "account_last4": null,
+              "balance": 465803.3,
+              "date": "2026-09-30"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 60647.86,
+              "channel": "NEFT",
+              "counterparty": "Manoj Kartik Pandey",
+              "category": "transfer",
+              "reference": "GNGBN96564024823",
+              "account_last4": null,
+              "balance": 465803.3,
+              "date": "2026-09-30"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          }
+        ]
+      },
+      "test_ood": {
+        "overall": {
+          "n": 500,
+          "valid_json": 100.0,
+          "exact_match": 72.2,
+          "field_accuracy": 95.5,
+          "fields": {
+            "direction": 88.2,
+            "amount": 100.0,
+            "channel": 92.6,
+            "counterparty": 92.8,
+            "category": 89.4,
+            "reference": 98.4,
+            "account_last4": 99.0,
+            "balance": 100.0,
+            "date": 99.0
+          }
+        },
+        "by_source": {
+          "sms": 76.9,
+          "statement": 67.5
+        },
+        "by_kind": {
+          "atm": 64.7,
+          "card": 72.3,
+          "card_refund": 77.8,
+          "charges": 27.3,
+          "chq_dep": 100.0,
+          "imps_cr": 100.0,
+          "imps_dr": 0.0,
+          "interest": 100.0,
+          "nach": 49.3,
+          "neft_cr": 100.0,
+          "neft_dr": 100.0,
+          "neft_rent": 100.0,
+          "neft_salary": 97.6,
+          "neft_tax": 75.0,
+          "rtgs_cr": 85.7,
+          "rtgs_dr": 100.0,
+          "tds": 100.0,
+          "upi_merchant": 66.9,
+          "upi_p2p_cr": 100.0,
+          "upi_p2p_dr": 77.8,
+          "upi_refund": 100.0,
+          "upi_rent": 75.0
+        },
+        "median_latency_ms": 142.3,
+        "error_sample": [
+          {
+            "id": "test_ood-00007",
+            "text": "Konark Bank Alert: Auto-debit (e-mandate) of ₹4,993.00 to LIC HOUSING FINANCE LTD from A/c x9934 on 25.02.26 successful.",
+            "gold": {
+              "direction": "debit",
+              "amount": 4993.0,
+              "channel": "NACH",
+              "counterparty": "LIC Housing Finance",
+              "category": "emi_loan",
+              "reference": null,
+              "account_last4": "9934",
+              "balance": null,
+              "date": "2026-02-25"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 4993.0,
+              "channel": "BANK",
+              "counterparty": "LIC Housing Finance",
+              "category": "emi_loan",
+              "reference": null,
+              "account_last4": "9934",
+              "balance": null,
+              "date": "2026-02-25"
+            },
+            "wrong": [
+              "direction",
+              "channel"
+            ]
+          },
+          {
+            "id": "test_ood-00008",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n26 Jun 2026,\"UPI/P2M/694202555777/STAR HEALTH PVT LTD/PAY TO MERCHANT/KONARK\",40502.94,,107534.93",
+            "gold": {
+              "direction": "debit",
+              "amount": 40502.94,
+              "channel": "UPI",
+              "counterparty": "Star Health",
+              "category": "insurance",
+              "reference": "694202555777",
+              "account_last4": null,
+              "balance": 107534.93,
+              "date": "2026-06-26"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 40502.94,
+              "channel": "UPI",
+              "counterparty": "Star Health",
+              "category": "insurance",
+              "reference": "694202555777",
+              "account_last4": null,
+              "balance": 107534.93,
+              "date": "2026-06-26"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00014",
+            "text": "Rs.17,468 debited from A/c ending 7997 on 2025-11-02 to VPA olapay@paytm (UPI Ref No 565842249165). Not you? Call 18001234567 to report -Vindhya Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 17468.0,
+              "channel": "UPI",
+              "counterparty": "Ola",
+              "category": "travel",
+              "reference": "565842249165",
+              "account_last4": "7997",
+              "balance": null,
+              "date": "2025-11-02"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 17468.0,
+              "channel": "UPI",
+              "counterparty": "Olapay",
+              "category": "transfer",
+              "reference": "565842249165",
+              "account_last4": "7997",
+              "balance": null,
+              "date": "2025-11-02"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00024",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n2025-06-30,\"UPI/674092089267/PAYMENT/bookmyshow@paytm/MALABAR BANK\",286.00,,197655.57",
+            "gold": {
+              "direction": "debit",
+              "amount": 286.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow",
+              "category": "entertainment",
+              "reference": "674092089267",
+              "account_last4": null,
+              "balance": 197655.57,
+              "date": "2025-06-30"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 286.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow",
+              "category": "travel",
+              "reference": "674092089267",
+              "account_last4": null,
+              "balance": 197655.57,
+              "date": "2025-06-30"
+            },
+            "wrong": [
+              "direction",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00031",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n08/12/2025,\"MIN BAL CHGS\",711,,516288.92",
+            "gold": {
+              "direction": "debit",
+              "amount": 711.0,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 516288.92,
+              "date": "2025-12-08"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 711.0,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": null,
+              "balance": 516288.92,
+              "date": "2025-12-08"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00032",
+            "text": "Date: 27 Feb 2026\nDescription: TO TRANSFER-UPI/DR/691401559094/CHAAYOS/MLBR/chaayos1@paytm/Pay to merchant--\nAmount: 223.79 DR\nClosing balance: 307907.24",
+            "gold": {
+              "direction": "debit",
+              "amount": 223.79,
+              "channel": "UPI",
+              "counterparty": "Chaayos",
+              "category": "food_dining",
+              "reference": "691401559094",
+              "account_last4": null,
+              "balance": 307907.24,
+              "date": "2026-02-27"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 223.79,
+              "channel": "UPI",
+              "counterparty": "Chaayo",
+              "category": "transfer",
+              "reference": "691401559094",
+              "account_last4": null,
+              "balance": 307907.24,
+              "date": "2026-02-27"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00039",
+            "text": "Rs.16694 debited from A/c x5046 on 11-Apr-2025 to VPA netmeds@ybl (UPI Ref No 588071899833). Not you? Call 18001234567 to report -Malabar Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 16694.0,
+              "channel": "UPI",
+              "counterparty": "Netmeds",
+              "category": "healthcare",
+              "reference": "588071899833",
+              "account_last4": "5046",
+              "balance": null,
+              "date": "2025-04-11"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 16694.0,
+              "channel": "UPI",
+              "counterparty": "NetMed",
+              "category": "healthcare",
+              "reference": "588071899833",
+              "account_last4": "5046",
+              "balance": null,
+              "date": "2025-04-11"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          },
+          {
+            "id": "test_ood-00041",
+            "text": "Sent Rs 675.00 From Narmada Bank A/C *1909 To CHAAYOS LIMITED On 31-05-2025 Ref 584441102538 Not You? Call 18001234567",
+            "gold": {
+              "direction": "debit",
+              "amount": 675.0,
+              "channel": "UPI",
+              "counterparty": "Chaayos",
+              "category": "food_dining",
+              "reference": "584441102538",
+              "account_last4": "1909",
+              "balance": null,
+              "date": "2025-05-31"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 675.0,
+              "channel": "UPI",
+              "counterparty": "Chaayo",
+              "category": "transfer",
+              "reference": "584441102538",
+              "account_last4": "1909",
+              "balance": null,
+              "date": "2025-05-31"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00045",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n04 Jul 2025,\"UPI-ZERODHA-zerodhaonline@hdfcbank-KAVB0179748-593515766205-NA\",59366.66,,295294.94",
+            "gold": {
+              "direction": "debit",
+              "amount": 59366.66,
+              "channel": "UPI",
+              "counterparty": "Zerodha",
+              "category": "investment",
+              "reference": "593515766205",
+              "account_last4": null,
+              "balance": 295294.94,
+              "date": "2025-07-04"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 59366.66,
+              "channel": "UPI",
+              "counterparty": "Zerodha",
+              "category": "investment",
+              "reference": "593515766205",
+              "account_last4": null,
+              "balance": 295294.94,
+              "date": "2025-07-04"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00046",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n21-Aug-25,\"ECS/ICICI LOMBARD PVT LTD/M65EMH0106173\",4684.00,,405533.92",
+            "gold": {
+              "direction": "debit",
+              "amount": 4684.0,
+              "channel": "NACH",
+              "counterparty": "ICICI Lombard",
+              "category": "insurance",
+              "reference": null,
+              "account_last4": null,
+              "balance": 405533.92,
+              "date": "2025-08-21"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 4684.0,
+              "channel": "ECB",
+              "counterparty": "ICICI Lombard",
+              "category": "insurance",
+              "reference": null,
+              "account_last4": null,
+              "balance": 405533.92,
+              "date": "2025-08-21"
+            },
+            "wrong": [
+              "direction",
+              "channel"
+            ]
+          },
+          {
+            "id": "test_ood-00052",
+            "text": "Rs.688.00 debited from A/c x1154 on 14 APR 2026 to VPA netmeds@axb (UPI Ref No 502767237645). Not you? Call 18001234567 to report -Deccan Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 688.0,
+              "channel": "UPI",
+              "counterparty": "Netmeds",
+              "category": "healthcare",
+              "reference": "502767237645",
+              "account_last4": "1154",
+              "balance": null,
+              "date": "2026-04-14"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 688.0,
+              "channel": "UPI",
+              "counterparty": "NetMed",
+              "category": "healthcare",
+              "reference": "502767237645",
+              "account_last4": "1154",
+              "balance": null,
+              "date": "2026-04-14"
+            },
+            "wrong": [
+              "counterparty"
+            ]
+          },
+          {
+            "id": "test_ood-00053",
+            "text": "Dear Customer, ATM AMC charges of ₹ 235.88 (incl GST) has been recovered from your a/c XXXXXXXX7123 on 2026-03-03. -Narmada Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 235.88,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": "7123",
+              "balance": null,
+              "date": "2026-03-03"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 235.88,
+              "channel": "BANK",
+              "counterparty": null,
+              "category": "bank_charges",
+              "reference": null,
+              "account_last4": "7123",
+              "balance": null,
+              "date": "2026-03-03"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00057",
+            "text": "23/05/2025 UPI/P2M/421019641320/JIO-BP/Pay to merchant/NARMADA -205.85",
+            "gold": {
+              "direction": "debit",
+              "amount": 205.85,
+              "channel": "UPI",
+              "counterparty": "Jio-bp",
+              "category": "fuel",
+              "reference": "421019641320",
+              "account_last4": null,
+              "balance": null,
+              "date": "2025-05-23"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 205.85,
+              "channel": "UPI",
+              "counterparty": "Jio",
+              "category": "telecom",
+              "reference": "421019641320",
+              "account_last4": null,
+              "balance": null,
+              "date": "2025-05-23"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          },
+          {
+            "id": "test_ood-00059",
+            "text": "Txn Date,Description,Debit,Credit,Balance\n17-08-2025,\"UPI/P2M/413830397865/BOOKMYSHOW LIMITED/Pay to merchant/KONARK\",125.00,,184058.51",
+            "gold": {
+              "direction": "debit",
+              "amount": 125.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow",
+              "category": "entertainment",
+              "reference": "413830397865",
+              "account_last4": null,
+              "balance": 184058.51,
+              "date": "2025-08-17"
+            },
+            "pred": {
+              "direction": "credit",
+              "amount": 125.0,
+              "channel": "UPI",
+              "counterparty": "BookMyShow",
+              "category": "entertainment",
+              "reference": "413830397865",
+              "account_last4": null,
+              "balance": 184058.51,
+              "date": "2025-08-17"
+            },
+            "wrong": [
+              "direction"
+            ]
+          },
+          {
+            "id": "test_ood-00062",
+            "text": "Rs.134.71 debited from A/c XXXXXXXX1954 on 2026-01-22 to VPA swiggyinstamart@paytm (UPI Ref No 478192650608). Not you? Call 18001234567 to report -Narmada Bank",
+            "gold": {
+              "direction": "debit",
+              "amount": 134.71,
+              "channel": "UPI",
+              "counterparty": "Swiggy Instamart",
+              "category": "groceries",
+              "reference": "478192650608",
+              "account_last4": "1954",
+              "balance": null,
+              "date": "2026-01-22"
+            },
+            "pred": {
+              "direction": "debit",
+              "amount": 134.71,
+              "channel": "UPI",
+              "counterparty": "Swiggy Instamoart",
+              "category": "food_dining",
+              "reference": "478192650608",
+              "account_last4": "1954",
+              "balance": null,
+              "date": "2026-01-22"
+            },
+            "wrong": [
+              "counterparty",
+              "category"
+            ]
+          }
+        ]
+      }
     }
   },
   "splits": [
